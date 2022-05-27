@@ -1,0 +1,70 @@
+@startuml
+
+class Caja {
+double ganaciaDelDia(unDia)
+void agregarVenta(unaVenta)
+}
+
+class Efectivo {
+double calcular(subTotal)
+}
+
+abstract class Estado {
+double cacular(precioPrenda)
+}
+
+abstract class FormaDePago {
+calcular(subTotal)
+}
+
+class Item {
+int cantidad
+double importe()
+}
+
+class Liquidacion {
+cacular(precioPrenda)
+}
+
+class Nuevo {
+cacular(precioPrenda)
+}
+
+class Prenda {
+double precioBase
+Double precio()
+}
+
+class Promocion {
+int descuento
+double cacular(precioPrenda)
+}
+
+class Tarjeta {
+int cuotas
+double coeficiente
+double calcular(subTotal)
+}
+
+enum TipoPrenda {
+SACO, PANTALON, CAMISA
+}
+
+class Venta {
+LocalDateTime fecha
+double calcular()
+}
+
+
+Caja --> "*" Venta
+Efectivo --|> FormaDePago
+Tarjeta --|> FormaDePago
+Nuevo--|> Estado
+Promocion--|> Estado
+Liquidacion--|> Estado
+Item --> Prenda
+Prenda --> TipoPrenda
+Prenda --> Estado
+Venta --> "*" Item
+Venta --> FormaDePago
+@enduml
